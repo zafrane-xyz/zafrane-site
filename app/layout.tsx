@@ -4,7 +4,8 @@ import { Cormorant_Garamond, Inter } from "next/font/google";
 import { CartProvider } from "@/components/CartProvider";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { SITE } from "@/lib/site";
+import Maintenance from "@/components/Maintenance";
+import { SITE, MAINTENANCE } from "@/lib/site";
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
@@ -34,17 +35,22 @@ export const metadata: Metadata = {
     images: [{ url: "/zafrane-logo.png", width: 1536, height: 1024 }],
   },
   icons: { icon: "/favicon.png", shortcut: "/favicon.png", apple: "/favicon.png" },
+  ...(MAINTENANCE ? { robots: { index: false, follow: false } } : {}),
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="it" className={`${cormorant.variable} ${inter.variable}`}>
       <body>
-        <CartProvider>
-          <Header />
-          <main>{children}</main>
-          <Footer />
-        </CartProvider>
+        {MAINTENANCE ? (
+          <Maintenance />
+        ) : (
+          <CartProvider>
+            <Header />
+            <main>{children}</main>
+            <Footer />
+          </CartProvider>
+        )}
       </body>
     </html>
   );

@@ -16,6 +16,10 @@ export const SITE = {
   },
 };
 
+// Modalità manutenzione: se true, TUTTE le pagine mostrano solo la schermata "sito in aggiornamento".
+// Per riaprire il sito basta mettere false e salvare.
+export const MAINTENANCE = true;
+
 // Se false, nessun prezzo viene mostrato: il cliente invia una richiesta d'ordine.
 // Se true, i prezzi di `price` vengono mostrati (IVA inclusa).
 export const SHOW_PRICES = false;
