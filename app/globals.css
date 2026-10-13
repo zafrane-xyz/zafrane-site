@@ -6,6 +6,7 @@
   --muted: #8A8378;
   --accent: #B31217;
   --line: #E5E1DA;
+  --ink-soft: #5f5952;
 }
 
 @theme inline {
@@ -23,8 +24,69 @@ body {
   color: var(--foreground);
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: var(--font-inter), Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--accent);
+  color: #fff;
+}
+
+.eyebrow {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.38em;
+  color: var(--muted);
+}
+
+.btn {
+  display: inline-block;
+  border: 1px solid var(--foreground);
+  padding: 14px 28px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  cursor: pointer;
+  background: transparent;
+  color: var(--foreground);
+}
+
+.btn:hover {
+  background: var(--foreground);
+  color: var(--background);
+}
+
+.btn-solid {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.btn-solid:hover {
+  background: #8f0f13;
+  border-color: #8f0f13;
+  color: #fff;
+}
+
+.field {
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid #cfc9bf;
+  background: transparent;
+  padding: 12px 0;
+  font-size: 14px;
+  outline: none;
+}
+
+.field:focus {
+  border-bottom-color: var(--accent);
 }
 
 @keyframes fadeIn {
