@@ -42,3 +42,87 @@ export function Jar({ label, className = "" }: { label: string; className?: stri
     </svg>
   );
 }
+
+// Fiore di Crocus sativus con i tre pistilli rossi.
+export function Crocus({ className = "" }: { className?: string }) {
+  const petal = "M120 214 C 92 186, 92 132, 120 92 C 148 132, 148 186, 120 214 Z";
+  return (
+    <svg viewBox="0 0 240 280" className={className} fill="none" role="img" aria-label="Fiore di Crocus sativus con i tre pistilli rossi">
+      <g stroke="#7d8a6a" strokeWidth="3" strokeLinecap="round">
+        <path d="M118 272 C 84 248, 62 208, 54 150" />
+        <path d="M122 272 C 156 248, 178 208, 186 150" />
+        <path d="M120 272 C 118 252, 120 234, 120 214" />
+      </g>
+      <g fill="#a48cc2" opacity="0.85">
+        <path d={petal} transform="rotate(-16 120 214)" />
+        <path d={petal} transform="rotate(16 120 214)" />
+      </g>
+      <g fill="#8a6fad">
+        <path d={petal} transform="rotate(-34 120 214)" opacity="0.92" />
+        <path d={petal} transform="rotate(34 120 214)" opacity="0.92" />
+        <path d={petal} />
+      </g>
+      <g stroke="#d9a441" strokeWidth="3" strokeLinecap="round">
+        <path d="M111 178 C 107 164, 105 154, 104 146" />
+        <path d="M129 178 C 133 164, 135 154, 136 146" />
+      </g>
+      <g fill="#d9a441">
+        <ellipse cx="104" cy="143" rx="3.5" ry="6" />
+        <ellipse cx="136" cy="143" rx="3.5" ry="6" />
+      </g>
+      <g stroke="#B31217" strokeWidth="4.5" strokeLinecap="round">
+        <path d="M120 176 C 119 142, 112 112, 103 84" />
+        <path d="M120 176 C 121 138, 121 104, 121 72" />
+        <path d="M120 176 C 121 142, 128 112, 137 84" />
+      </g>
+      <g fill="#B31217">
+        <ellipse cx="102" cy="79" rx="5" ry="10" transform="rotate(-18 102 79)" />
+        <ellipse cx="121" cy="66" rx="5" ry="11" />
+        <ellipse cx="138" cy="79" rx="5" ry="10" transform="rotate(18 138 79)" />
+      </g>
+    </svg>
+  );
+}
+
+// Lattina di caviale.
+export function Tin({ label, className = "" }: { label: string; className?: string }) {
+  return (
+    <svg viewBox="0 0 240 220" className={className} fill="none" role="img" aria-label={`Lattina ZAFRANE ${label}`}>
+      <defs>
+        <linearGradient id="tinbody" x1="0" x2="1">
+          <stop offset="0" stopColor="#b4b0a8" />
+          <stop offset="0.35" stopColor="#f1eee8" />
+          <stop offset="0.7" stopColor="#cfcac1" />
+          <stop offset="1" stopColor="#9d988f" />
+        </linearGradient>
+      </defs>
+      <ellipse cx="120" cy="200" rx="88" ry="10" fill="#171717" opacity="0.08" />
+      <path d="M36 92 L36 176 C36 194 204 194 204 176 L204 92 Z" fill="url(#tinbody)" />
+      <ellipse cx="120" cy="92" rx="84" ry="20" fill="#e6e2da" stroke="#bcb7ae" strokeWidth="1.5" />
+      <ellipse cx="120" cy="90" rx="70" ry="14" fill="#d7d2c9" />
+      <g transform="translate(120 88) scale(0.16) translate(-100 -110)">
+        <path d="M20 190 C 32 120, 46 70, 64 18" stroke="#B31217" strokeWidth="12" strokeLinecap="round" />
+        <path d="M100 196 C 100 130, 104 84, 110 30" stroke="#B31217" strokeWidth="14" strokeLinecap="round" />
+        <path d="M180 190 C 168 120, 152 70, 138 18" stroke="#B31217" strokeWidth="12" strokeLinecap="round" />
+      </g>
+      <text x="120" y="146" textAnchor="middle" fontFamily="Georgia, serif" fontSize="17" letterSpacing="5" fill="#171717">ZAFRANE</text>
+      <text x="120" y="166" textAnchor="middle" fontFamily="Arial, sans-serif" fontSize="8.5" letterSpacing="2.4" fill="#171717">{label.toUpperCase()}</text>
+    </svg>
+  );
+}
+
+// Tratta ideale tra due luoghi: linea tratteggiata, non una mappa.
+export function Route({ from, to, className = "" }: { from: string; to: string; className?: string }) {
+  const label = { fontFamily: "var(--font-inter), Arial, sans-serif" } as const;
+  return (
+    <svg viewBox="0 0 640 170" className={className} fill="none" role="img" aria-label={`Da ${from} a ${to}`}>
+      <path d="M70 100 C 210 10, 430 10, 570 100" stroke="#B31217" strokeWidth="1.6" strokeDasharray="1 8" strokeLinecap="round" />
+      <circle cx="70" cy="100" r="7" fill="#B31217" />
+      <circle cx="570" cy="100" r="7" fill="#171717" />
+      <circle cx="70" cy="100" r="15" stroke="#B31217" strokeWidth="1" opacity="0.35" />
+      <circle cx="570" cy="100" r="15" stroke="#171717" strokeWidth="1" opacity="0.35" />
+      <text x="70" y="140" textAnchor="middle" fontSize="11" letterSpacing="4" fill="#5f5952" style={label}>{from.toUpperCase()}</text>
+      <text x="570" y="140" textAnchor="middle" fontSize="11" letterSpacing="4" fill="#5f5952" style={label}>{to.toUpperCase()}</text>
+    </svg>
+  );
+}

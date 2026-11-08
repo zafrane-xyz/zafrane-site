@@ -1,11 +1,10 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Inter } from "next/font/google";
-import { CartProvider } from "@/components/CartProvider";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Maintenance from "@/components/Maintenance";
-import { SITE, MAINTENANCE } from "@/lib/site";
+import { SITE, LEGAL, MAINTENANCE } from "@/lib/site";
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
@@ -19,11 +18,13 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
+const DESCRIPTION =
+  "Zafferano persiano Super Negin dalla Khorasan, in pistilli e polvere Sargol, e caviale del Caspio. Filiera familiare diretta, per ristorazione e dettaglio a Milano.";
+
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: { default: "ZAFRANE · Zafferano persiano Super Negin", template: "%s · ZAFRANE" },
-  description:
-    "Zafferano persiano Super Negin in pistilli, selezionato a Mashhad e presentato a Milano. Alta resa, colore intenso, per chef e cucine esigenti.",
+  description: DESCRIPTION,
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
@@ -31,11 +32,30 @@ export const metadata: Metadata = {
     url: SITE.url,
     siteName: "ZAFRANE",
     title: "ZAFRANE · Zafferano persiano Super Negin",
-    description: "Zafferano Super Negin in pistilli. Filiera diretta, alta resa, design contemporaneo.",
-    images: [{ url: "/zafrane-logo.png", width: 1536, height: 1024 }],
+    description: DESCRIPTION,
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: "ZAFRANE" }],
   },
+  twitter: { card: "summary_large_image", images: ["/og.png"] },
   icons: { icon: "/favicon.png", shortcut: "/favicon.png", apple: "/favicon.png" },
   ...(MAINTENANCE ? { robots: { index: false, follow: false } } : {}),
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: SITE.name,
+  url: SITE.url,
+  logo: `${SITE.url}/zafrane-logo-web.png`,
+  email: SITE.email,
+  sameAs: [SITE.instagram],
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: LEGAL.citta,
+    addressCountry: "IT",
+    ...(LEGAL.indirizzo ? { streetAddress: LEGAL.indirizzo } : {}),
+    ...(LEGAL.cap ? { postalCode: LEGAL.cap } : {}),
+  },
+  ...(LEGAL.partitaIva ? { vatID: `IT${LEGAL.partitaIva.replace(/^IT/i, "")}` } : {}),
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -45,11 +65,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {MAINTENANCE ? (
           <Maintenance />
         ) : (
-          <CartProvider>
+          <>
             <Header />
             <main>{children}</main>
             <Footer />
-          </CartProvider>
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+          </>
         )}
       </body>
     </html>

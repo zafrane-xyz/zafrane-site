@@ -7,6 +7,7 @@
   --accent: #B31217;
   --line: #E5E1DA;
   --ink-soft: #5f5952;
+  --panel: #f1ede6;
 }
 
 @theme inline {
@@ -56,6 +57,7 @@ body {
   cursor: pointer;
   background: transparent;
   color: var(--foreground);
+  text-align: center;
 }
 
 .btn:hover {
@@ -75,6 +77,16 @@ body {
   color: #fff;
 }
 
+.btn-light {
+  border-color: #f8f6f2;
+  color: #f8f6f2;
+}
+
+.btn-light:hover {
+  background: #f8f6f2;
+  color: #171717;
+}
+
 .field {
   width: 100%;
   border: 0;
@@ -83,14 +95,14 @@ body {
   padding: 12px 0;
   font-size: 14px;
   outline: none;
+  border-radius: 0;
 }
 
 .field:focus {
   border-bottom-color: var(--accent);
 }
 
-@keyframes fadeIn {
-  to {
-    opacity: 1;
-  }
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
 }
