@@ -1,31 +1,28 @@
 import Link from "next/link";
-import { Crocus, Jar, Tin } from "@/components/Art";
+import { GRADES, PistilPlate } from "@/components/Pistils";
 import { mailto } from "@/lib/site";
 
+const FACTS = [
+  ["3", "pistilli per fiore", "Ogni fiore di Crocus sativus ne dà solo tre, separati a mano."],
+  ["150.000", "fiori per un chilo", "È la ragione per cui lo zafferano è la spezia più preziosa al mondo."],
+  ["1", "raccolto l’anno", "I fiori sbocciano in autunno, per poche settimane."],
+];
+
 const PILLARS = [
-  {
-    title: "Alta resa",
-    text: "Pistilli interi e intensi: indicativamente 0,05–0,10 g a porzione di risotto. Più porzioni per grammo, food cost prevedibile.",
-  },
-  {
-    title: "Filiera familiare",
-    text: "Acquistiamo direttamente dalla famiglia produttrice, in Khorasan. Sappiamo chi raccoglie, quando e come.",
-  },
-  {
-    title: "Solo parte rossa",
-    text: "Super Negin in pistilli, essiccato naturalmente al sole. In polvere, solo Sargol: 100% parte rossa.",
-  },
+  ["Alta resa", "Pistilli interi e intensi: indicativamente 0,05–0,10 g a porzione di risotto. Più porzioni per grammo, food cost prevedibile."],
+  ["Filiera familiare", "Acquistiamo direttamente dalla famiglia produttrice in Khorasan. Sappiamo chi raccoglie, quando e come."],
+  ["Solo parte rossa", "Super Negin in pistilli, essiccato al sole. In polvere, solo Sargol: le punte rosse, nient’altro."],
 ];
 
 export default function Home() {
   return (
     <>
       {/* HERO */}
-      <section className="flex min-h-[86vh] flex-col items-center justify-center px-6 text-center">
-        <img src="/zafrane-logo-web.png" alt="ZAFRANE" width={872} height={378} className="h-auto w-[440px] max-w-[82vw]" />
-        <p className="eyebrow mt-8">Milano · Zafferano Super Negin</p>
-        <h1 className="mt-10 max-w-2xl font-serif text-[30px] leading-[1.3] md:text-[40px]">
-          Zafferano persiano per la cucina di alto livello.
+      <section className="glow relative flex min-h-[calc(100vh-72px)] flex-col items-center justify-center px-6 py-24 text-center">
+        <img src="/logo-light.png" alt="ZAFRANE" width={880} height={386} className="h-auto w-[460px] max-w-[80vw]" />
+        <p className="eyebrow mt-12">Khorasan · Milano</p>
+        <h1 className="mt-8 max-w-3xl font-serif text-[38px] font-light leading-[1.15] md:text-[60px]">
+          L’oro rosso della Khorasan, <em className="text-[var(--gold)]">scelto per le cucine di Milano.</em>
         </h1>
         <div className="mt-12 flex flex-wrap justify-center gap-4">
           <Link href="/zafferano" className="btn btn-solid">Scopri lo zafferano</Link>
@@ -33,83 +30,97 @@ export default function Home() {
         </div>
       </section>
 
-      {/* FRASE */}
-      <section className="px-6 py-24">
-        <p className="mx-auto max-w-3xl text-center font-serif text-[30px] leading-[1.45] md:text-[40px]">
-          Pistilli interi, colore intenso, alta resa. Zafferano Super Negin dalla Khorasan, acquistato direttamente dalla famiglia produttrice e consegnato a Milano.
-        </p>
+      {/* MANIFESTO */}
+      <section className="border-t border-[var(--line)] px-6 py-28">
+        <div className="mx-auto grid max-w-6xl items-center gap-16 md:grid-cols-2">
+          <div>
+            <p className="eyebrow">Super Negin</p>
+            <p className="mt-8 font-serif text-[32px] font-light leading-[1.3] md:text-[44px]">
+              Pistilli interi, colore profondo, profumo pulito. <em className="text-[var(--gold)]">Meno quantità, più intensità.</em>
+            </p>
+            <p className="mt-8 max-w-md text-[15px] leading-8 text-[var(--ink-soft)]">
+              Zafferano Super Negin acquistato direttamente dalla famiglia produttrice, essiccato al sole e consegnato a Milano.
+            </p>
+          </div>
+          <div className="border border-[var(--line)] bg-[var(--surface)] p-6">
+            <PistilPlate grade="super-negin" label="Pistilli di zafferano Super Negin" className="h-auto w-full" />
+          </div>
+        </div>
+      </section>
+
+      {/* NUMERI */}
+      <section className="bg-[var(--surface)] px-6 py-24">
+        <div className="mx-auto grid max-w-6xl gap-14 md:grid-cols-3">
+          {FACTS.map(([n, k, d]) => (
+            <div key={k}>
+              <p className="font-serif text-[64px] font-light leading-none text-[var(--gold)]">{n}</p>
+              <p className="eyebrow mt-4 text-[var(--foreground)]!">{k}</p>
+              <p className="mt-4 max-w-xs text-[14px] leading-7 text-[var(--ink-soft)]">{d}</p>
+            </div>
+          ))}
+        </div>
       </section>
 
       {/* PILASTRI */}
-      <section className="px-6 pb-28">
-        <div className="mx-auto max-w-5xl">
-          <p className="eyebrow mb-16 text-center">Perché ZAFRANE</p>
-          <div className="grid gap-14 md:grid-cols-3">
-            {PILLARS.map((p) => (
-              <div key={p.title} className="text-center">
-                <h2 className="mb-4 font-serif text-[26px]">{p.title}</h2>
-                <p className="text-[14px] leading-7 text-[var(--ink-soft)]">{p.text}</p>
+      <section className="px-6 py-28">
+        <div className="mx-auto max-w-6xl">
+          <p className="eyebrow">Perché ZAFRANE</p>
+          <div className="mt-14 grid gap-14 md:grid-cols-3">
+            {PILLARS.map(([t, d], i) => (
+              <div key={t}>
+                <div className="hairline" />
+                <p className="mt-6 font-serif text-[18px] text-[var(--gold)]">0{i + 1}</p>
+                <h2 className="mt-2 font-serif text-[30px] font-light">{t}</h2>
+                <p className="mt-4 text-[14px] leading-7 text-[var(--ink-soft)]">{d}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* LINEE */}
-      <section className="border-y border-[var(--line)] bg-[var(--panel)] px-6 py-24">
-        <div className="mx-auto grid max-w-5xl gap-10 md:grid-cols-2">
-          <Link href="/zafferano" className="group flex flex-col items-center border border-[var(--line)] bg-[var(--background)] p-10 text-center transition hover:border-[var(--foreground)]">
-            <Jar label="Super Negin" className="h-auto w-32" />
-            <p className="eyebrow mt-8">Linea principale</p>
-            <h2 className="mt-3 font-serif text-[30px]">Zafferano</h2>
-            <p className="mt-3 max-w-xs text-[14px] leading-7 text-[var(--ink-soft)]">Super Negin in pistilli e polvere 100% Sargol.</p>
-            <span className="mt-6 text-[11px] uppercase tracking-[0.24em] group-hover:text-[var(--accent)]">Scopri →</span>
-          </Link>
-          <Link href="/caviale" className="group flex flex-col items-center border border-[var(--line)] bg-[var(--background)] p-10 text-center transition hover:border-[var(--foreground)]">
-            <Tin label="Caviale" className="h-auto w-40" />
-            <p className="eyebrow mt-8">Nuova linea · in avvio</p>
-            <h2 className="mt-3 font-serif text-[30px]">Caviale del Caspio</h2>
-            <p className="mt-3 max-w-xs text-[14px] leading-7 text-[var(--ink-soft)]">Beluga e Baerii da allevamento. Campionature per ristorazione, catering e hotel.</p>
-            <span className="mt-6 text-[11px] uppercase tracking-[0.24em] group-hover:text-[var(--accent)]">Scopri →</span>
-          </Link>
-        </div>
-      </section>
-
-      {/* ORIGINE */}
-      <section className="px-6 py-28">
-        <div className="mx-auto grid max-w-5xl items-center gap-14 md:grid-cols-2">
-          <div className="mx-auto w-44 md:w-60">
-            <Crocus className="h-auto w-full" />
+      {/* CATEGORIE */}
+      <section className="border-t border-[var(--line)] px-6 py-28">
+        <div className="mx-auto max-w-6xl">
+          <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
+            <div>
+              <p className="eyebrow">Le categorie</p>
+              <h2 className="mt-6 max-w-xl font-serif text-[36px] font-light leading-tight md:text-[48px]">
+                Non tutto lo zafferano è uguale.
+              </h2>
+            </div>
+            <Link href="/zafferano#categorie" className="btn shrink-0">Le categorie spiegate</Link>
           </div>
-          <div>
-            <p className="eyebrow">Origine</p>
-            <h2 className="mt-5 font-serif text-[36px] leading-tight">Dalla Khorasan a Milano.</h2>
-            <p className="mt-6 text-[14px] leading-7 text-[var(--ink-soft)]">
-              Ogni fiore di Crocus sativus dà solo tre pistilli, raccolti a mano nel breve periodo della fioritura autunnale.
-              Da Mashhad a Milano, la città del risotto allo zafferano: un solo filo tra chi produce e chi cucina.
-            </p>
-            <Link href="/origine" className="btn mt-8">La nostra origine</Link>
+          <div className="mt-14 grid grid-cols-2 gap-4 md:grid-cols-5">
+            {GRADES.map((g) => (
+              <Link key={g.grade} href="/zafferano#categorie" className="group border border-[var(--line)] bg-[var(--surface)] p-4 transition hover:border-[var(--gold)]">
+                <PistilPlate grade={g.grade} label={`Zafferano ${g.name}`} className="h-auto w-full" />
+                <p className="mt-3 font-serif text-[20px]">{g.name}</p>
+                <p className="mt-1 h-4 text-[10px] uppercase tracking-[0.22em] text-[var(--gold)]">{g.ours ?? ""}</p>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
 
       {/* RISTORAZIONE */}
-      <section className="bg-[var(--foreground)] px-6 py-24 text-[#f8f6f2]">
-        <div className="mx-auto flex max-w-5xl flex-col items-start justify-between gap-10 md:flex-row md:items-center">
-          <div className="max-w-xl">
-            <p className="eyebrow text-[#b8b1a6]!">Per ristoranti, hotel e catering</p>
-            <h2 className="mt-4 font-serif text-[34px] leading-tight">Campione di prova, forniture programmate, listino riservato.</h2>
+      <section className="bg-gradient-to-br from-[#6a0b10] to-[#2a0709] px-6 py-28">
+        <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-10 md:flex-row md:items-center">
+          <div className="max-w-2xl">
+            <p className="eyebrow text-[#e9c27a]!">Per ristoranti, hotel e catering</p>
+            <h2 className="mt-6 font-serif text-[36px] font-light leading-tight md:text-[48px]">
+              Campione di prova, forniture programmate, listino riservato.
+            </h2>
           </div>
-          <Link href="/ristorazione#richiesta" className="btn btn-light shrink-0">Richiedi un campione</Link>
+          <Link href="/ristorazione#richiesta" className="btn shrink-0 border-[#f1e9dc]!">Richiedi un campione</Link>
         </div>
       </section>
 
       {/* SHOP */}
-      <section className="px-6 py-20">
-        <div className="mx-auto flex max-w-5xl flex-col items-start justify-between gap-6 md:flex-row md:items-center">
+      <section className="px-6 py-24">
+        <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-8 md:flex-row md:items-center">
           <div>
             <p className="eyebrow">Shop online</p>
-            <p className="mt-3 font-serif text-[26px]">In allestimento. Nel frattempo, ordini su richiesta.</p>
+            <p className="mt-4 font-serif text-[30px] font-light">In allestimento. Nel frattempo, ordini su richiesta.</p>
           </div>
           <div className="flex flex-wrap gap-4">
             <Link href="/shop" className="btn">Info sullo shop</Link>

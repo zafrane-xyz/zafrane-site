@@ -1,5 +1,5 @@
 import "./globals.css";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, Inter } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -9,6 +9,7 @@ import { SITE, LEGAL, MAINTENANCE } from "@/lib/site";
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600"],
+  style: ["normal", "italic"],
   variable: "--font-cormorant",
 });
 
@@ -19,7 +20,9 @@ const inter = Inter({
 });
 
 const DESCRIPTION =
-  "Zafferano persiano Super Negin dalla Khorasan, in pistilli e polvere Sargol, e caviale del Caspio. Filiera familiare diretta, per ristorazione e dettaglio a Milano.";
+  "Zafferano persiano Super Negin in pistilli e polvere 100% Sargol, dalla filiera familiare in Khorasan. Per la ristorazione di Milano e per la cucina di casa.";
+
+export const viewport: Viewport = { themeColor: "#120e0c" };
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
@@ -45,7 +48,7 @@ const jsonLd = {
   "@type": "Organization",
   name: SITE.name,
   url: SITE.url,
-  logo: `${SITE.url}/zafrane-logo-web.png`,
+  logo: `${SITE.url}/zafrane-logo.png`,
   email: SITE.email,
   sameAs: [SITE.instagram],
   address: {
@@ -55,7 +58,7 @@ const jsonLd = {
     ...(LEGAL.indirizzo ? { streetAddress: LEGAL.indirizzo } : {}),
     ...(LEGAL.cap ? { postalCode: LEGAL.cap } : {}),
   },
-  ...(LEGAL.partitaIva ? { vatID: `IT${LEGAL.partitaIva.replace(/^IT/i, "")}` } : {}),
+  ...(LEGAL.partitaIva ? { vatID: `IT${LEGAL.partitaIva}` } : {}),
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

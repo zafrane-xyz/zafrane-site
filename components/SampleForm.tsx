@@ -7,7 +7,7 @@ export default function SampleForm() {
   const [f, setF] = useState({
     locale: "",
     tipo: "Ristorante",
-    prodotto: "Zafferano (pistilli e/o polvere)",
+    prodotto: "Pistilli Super Negin",
     referente: "",
     email: "",
     telefono: "",
@@ -46,9 +46,9 @@ export default function SampleForm() {
         <option>Altro</option>
       </select>
       <select className="field" value={f.prodotto} onChange={set("prodotto")} aria-label="Prodotto di interesse">
-        <option>Zafferano (pistilli e/o polvere)</option>
-        <option>Caviale del Caspio</option>
-        <option>Zafferano e caviale</option>
+        <option>Pistilli Super Negin</option>
+        <option>Polvere 100% Sargol</option>
+        <option>Pistilli e polvere</option>
       </select>
       <input required className="field" placeholder="Referente (es. chef, responsabile acquisti)" value={f.referente} onChange={set("referente")} />
       <input required type="email" className="field" placeholder="Email" value={f.email} onChange={set("email")} />

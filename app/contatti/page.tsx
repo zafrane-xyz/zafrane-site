@@ -10,34 +10,35 @@ export const metadata: Metadata = {
 
 export default function Contatti() {
   const rows: [string, React.ReactNode][] = [
-    ["Email", <a key="e" href={mailto("Contatto dal sito")} className="hover:text-[var(--accent)]">{SITE.email}</a>],
+    ["Email", <a key="e" href={mailto("Contatto dal sito")} className="hover:text-[var(--gold)]">{SITE.email}</a>],
     [
       "Instagram",
-      <a key="i" href={SITE.instagram} target="_blank" rel="noopener noreferrer" className="hover:text-[var(--accent)]">
+      <a key="i" href={SITE.instagram} target="_blank" rel="noopener noreferrer" className="hover:text-[var(--gold)]">
         {SITE.instagramHandle}
       </a>,
     ],
     ["Sede", addressLine()],
-    ["Titolare", `${LEGAL.forma} di ${LEGAL.titolare}`],
   ];
   if (LEGAL.partitaIva) rows.push(["Partita IVA", LEGAL.partitaIva]);
   if (LEGAL.rea) rows.push(["REA", LEGAL.rea]);
   if (LEGAL.pec) rows.push(["PEC", LEGAL.pec]);
 
   return (
-    <div className="px-6 py-24">
-      <div className="mx-auto max-w-3xl">
+    <section className="glow px-6 pb-28 pt-28">
+      <div className="mx-auto max-w-6xl">
         <p className="eyebrow">Contatti</p>
-        <h1 className="mt-5 font-serif text-[44px] leading-tight md:text-[56px]">Scrivici.</h1>
-        <p className="mt-6 max-w-xl text-[15px] leading-8 text-[var(--ink-soft)]">
-          Per ordini, campioni, forniture e informazioni. Rispondiamo a mano a ogni messaggio.
+        <h1 className="mt-8 font-serif text-[44px] font-light leading-[1.1] md:text-[72px]">
+          Scrivici. <em className="text-[var(--gold)]">Rispondiamo noi.</em>
+        </h1>
+        <p className="mt-8 max-w-xl text-[15px] leading-8 text-[var(--ink-soft)]">
+          Per ordini, campioni, forniture e informazioni. Ogni messaggio riceve una risposta personale.
         </p>
 
-        <dl className="mt-14 divide-y divide-[var(--line)] border-y border-[var(--line)]">
+        <dl className="mt-16 max-w-3xl divide-y divide-[var(--line)] border-y border-[var(--line)]">
           {rows.map(([k, v]) => (
             <div key={k} className="grid gap-2 py-6 md:grid-cols-3">
               <dt className="eyebrow self-center">{k}</dt>
-              <dd className="text-[16px] md:col-span-2">{v}</dd>
+              <dd className="text-[17px] md:col-span-2">{v}</dd>
             </div>
           ))}
         </dl>
@@ -45,9 +46,8 @@ export default function Contatti() {
         <div className="mt-14 flex flex-wrap gap-4">
           <a href={mailto("Contatto dal sito")} className="btn btn-solid">Scrivi un’email</a>
           <Link href="/ristorazione#richiesta" className="btn">Campione per la ristorazione</Link>
-          <Link href="/shop" className="btn">Shop online</Link>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

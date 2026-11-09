@@ -1,13 +1,16 @@
 @import "tailwindcss";
 
+/* Tema ZAFRANE: nero caldo, crema, rosso zafferano, oro. */
 :root {
-  --background: #F8F6F2;
-  --foreground: #171717;
-  --muted: #8A8378;
-  --accent: #B31217;
-  --line: #E5E1DA;
-  --ink-soft: #5f5952;
-  --panel: #f1ede6;
+  --background: #120e0c;
+  --surface: #1a1411;
+  --surface-2: #221a16;
+  --foreground: #f1e9dc;
+  --ink-soft: #c7b9a8;
+  --muted: #988a7c;
+  --line: rgba(241, 233, 220, 0.12);
+  --accent: #c8232b;
+  --gold: #cfa052;
 }
 
 @theme inline {
@@ -27,6 +30,7 @@ body {
 
 html {
   scroll-behavior: smooth;
+  color-scheme: dark;
 }
 
 body {
@@ -42,18 +46,18 @@ body {
 .eyebrow {
   font-size: 10px;
   text-transform: uppercase;
-  letter-spacing: 0.38em;
-  color: var(--muted);
+  letter-spacing: 0.4em;
+  color: var(--gold);
 }
 
 .btn {
   display: inline-block;
-  border: 1px solid var(--foreground);
-  padding: 14px 28px;
+  border: 1px solid rgba(241, 233, 220, 0.45);
+  padding: 15px 30px;
   font-size: 11px;
   text-transform: uppercase;
-  letter-spacing: 0.24em;
-  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  letter-spacing: 0.26em;
+  transition: background 0.25s, color 0.25s, border-color 0.25s;
   cursor: pointer;
   background: transparent;
   color: var(--foreground);
@@ -62,6 +66,7 @@ body {
 
 .btn:hover {
   background: var(--foreground);
+  border-color: var(--foreground);
   color: var(--background);
 }
 
@@ -72,37 +77,47 @@ body {
 }
 
 .btn-solid:hover {
-  background: #8f0f13;
-  border-color: #8f0f13;
+  background: #a51a21;
+  border-color: #a51a21;
   color: #fff;
-}
-
-.btn-light {
-  border-color: #f8f6f2;
-  color: #f8f6f2;
-}
-
-.btn-light:hover {
-  background: #f8f6f2;
-  color: #171717;
 }
 
 .field {
   width: 100%;
   border: 0;
-  border-bottom: 1px solid #cfc9bf;
+  border-bottom: 1px solid rgba(241, 233, 220, 0.25);
   background: transparent;
+  color: var(--foreground);
   padding: 12px 0;
   font-size: 14px;
   outline: none;
   border-radius: 0;
 }
 
+.field::placeholder {
+  color: var(--muted);
+}
+
 .field:focus {
-  border-bottom-color: var(--accent);
+  border-bottom-color: var(--gold);
+}
+
+.field option {
+  background: var(--surface);
+  color: var(--foreground);
+}
+
+.hairline {
+  height: 1px;
+  width: 48px;
+  background: var(--gold);
+}
+
+.glow {
+  background: radial-gradient(ellipse 60% 50% at 50% 42%, rgba(200, 35, 43, 0.2), transparent 70%);
 }
 
 :focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--gold);
   outline-offset: 3px;
 }

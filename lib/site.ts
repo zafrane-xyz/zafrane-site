@@ -1,5 +1,5 @@
 // Configurazione centrale del sito ZAFRANE.
-// Per aggiornare contatti, dati fiscali o foto si modifica SOLO questo file.
+// Per aggiornare contatti o dati fiscali si modifica SOLO questo file.
 
 export const SITE = {
   name: "ZAFRANE",
@@ -10,35 +10,24 @@ export const SITE = {
   city: "Milano",
 };
 
-// Dati societari: compaiono nel footer, nella pagina Contatti e nella Privacy.
-// Lascia "" i campi che non hai: non vengono mostrati.
+// Dati societari: footer, Contatti e Privacy. I campi vuoti non vengono mostrati.
 export const LEGAL = {
-  forma: "Ditta individuale",
-  titolare: "Saeed Khoshbaf Torghabe", // nome come da visura camerale
-  partitaIva: "14728190969", // attribuita il 15/05/2026 (ATECO 46.38.00)
-  indirizzo: "Via privata Terenzio Mamiani 4", // sede come da Business Plan Invitalia
+  titolare: "Saeed Khoshbaf Torghabe", // compare solo nell'informativa privacy (titolare del trattamento)
+  partitaIva: "14728190969",
+  indirizzo: "Via privata Terenzio Mamiani 4",
   cap: "20127",
   citta: "Milano",
   provincia: "MI",
-  rea: "", // numero REA, se presente in visura
-  pec: "", // PEC aziendale, se attivata
+  rea: "",
+  pec: "",
 };
 
 // Se true, TUTTE le pagine mostrano solo la schermata "sito in aggiornamento".
 export const MAINTENANCE = false;
 
-// Foto reali: carica i file in /public/foto/ e scrivi qui il percorso, es. "/foto/origine.jpg".
-// Finché un campo è vuoto, il sito mostra un'illustrazione al suo posto.
-export const PHOTOS: Record<"zafferano" | "origine" | "caviale", string | undefined> = {
-  zafferano: undefined,
-  origine: undefined,
-  caviale: undefined,
-};
-
 export const NAV = [
   { href: "/zafferano", label: "Zafferano" },
   { href: "/origine", label: "Origine" },
-  { href: "/caviale", label: "Caviale" },
   { href: "/ristorazione", label: "Ristorazione" },
   { href: "/shop", label: "Shop" },
   { href: "/contatti", label: "Contatti" },
@@ -56,10 +45,10 @@ export function addressLine() {
   return `${l.indirizzo}, ${place}${l.provincia ? ` (${l.provincia})` : ""}`;
 }
 
-// Righe dei dati societari, solo quelle compilate.
+// Riga dei dati aziendali nel footer: marchio, sede, partita IVA.
 export function legalLines(): string[] {
   const l = LEGAL;
-  const lines = [`${SITE.name} · ${l.forma.toLowerCase()} di ${l.titolare}`, `Sede: ${addressLine()}`];
+  const lines = [SITE.name, addressLine()];
   if (l.partitaIva) lines.push(`P.IVA ${l.partitaIva}`);
   if (l.rea) lines.push(`REA ${l.rea}`);
   if (l.pec) lines.push(`PEC ${l.pec}`);

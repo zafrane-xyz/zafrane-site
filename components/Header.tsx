@@ -8,15 +8,15 @@ export default function Header() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-[var(--line)] bg-[var(--background)]/90 backdrop-blur">
-      <div className="mx-auto flex h-16 max-w-5xl items-center justify-between px-6">
-        <Link href="/" className="font-serif text-[22px] tracking-[0.32em] text-[var(--foreground)]" onClick={() => setOpen(false)}>
-          ZAFRANE
+    <header className="sticky top-0 z-40 border-b border-[var(--line)] bg-[var(--background)]/85 backdrop-blur-md">
+      <div className="mx-auto flex h-[72px] max-w-6xl items-center justify-between px-6">
+        <Link href="/" aria-label="ZAFRANE, home" onClick={() => setOpen(false)} className="shrink-0">
+          <img src="/logo-header.png" alt="ZAFRANE" width={331} height={80} className="h-9 w-auto" />
         </Link>
 
-        <nav className="hidden items-center gap-8 lg:flex" aria-label="Principale">
+        <nav className="hidden items-center gap-10 md:flex" aria-label="Principale">
           {NAV.map((n) => (
-            <Link key={n.href} href={n.href} className="text-[11px] uppercase tracking-[0.24em] text-[var(--ink-soft)] transition hover:text-[var(--accent)]">
+            <Link key={n.href} href={n.href} className="text-[11px] uppercase tracking-[0.26em] text-[var(--ink-soft)] transition hover:text-[var(--gold)]">
               {n.label}
             </Link>
           ))}
@@ -25,7 +25,7 @@ export default function Header() {
         <button
           aria-label="Apri o chiudi il menu"
           aria-expanded={open}
-          className="text-[11px] uppercase tracking-[0.24em] lg:hidden"
+          className="text-[11px] uppercase tracking-[0.26em] text-[var(--ink-soft)] md:hidden"
           onClick={() => setOpen(!open)}
         >
           {open ? "Chiudi" : "Menu"}
@@ -33,10 +33,10 @@ export default function Header() {
       </div>
 
       {open && (
-        <nav className="border-t border-[var(--line)] bg-[var(--background)] px-6 py-6 lg:hidden" aria-label="Mobile">
-          <div className="flex flex-col gap-5">
+        <nav className="border-t border-[var(--line)] bg-[var(--background)] px-6 py-8 md:hidden" aria-label="Mobile">
+          <div className="flex flex-col gap-6">
             {NAV.map((n) => (
-              <Link key={n.href} href={n.href} onClick={() => setOpen(false)} className="text-[12px] uppercase tracking-[0.24em] text-[var(--ink-soft)]">
+              <Link key={n.href} href={n.href} onClick={() => setOpen(false)} className="font-serif text-[26px]">
                 {n.label}
               </Link>
             ))}
