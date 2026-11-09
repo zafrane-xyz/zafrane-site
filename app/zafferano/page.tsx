@@ -31,7 +31,7 @@ const SPECS: [string, string][] = [
   ["Origine", "Khorasan, Iran"],
   ["Raccolta", "A mano, nella fioritura autunnale"],
   ["Essiccazione", "Naturale, al sole"],
-  ["Analisi", "Certificato di analisi del lotto su richiesta"],
+  ["Analisi", "Categoria I secondo ISO 3632. Certificato di analisi del lotto su richiesta."],
 ];
 
 const GUIDE = [
