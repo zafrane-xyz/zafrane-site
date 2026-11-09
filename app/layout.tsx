@@ -49,7 +49,7 @@ const jsonLd = {
   "@type": "Organization",
   name: SITE.name,
   url: SITE.url,
-  logo: `${SITE.url}/zafrane-logo.png`,
+  logo: `${SITE.url}/logo-dark.png`,
   email: SITE.email,
   sameAs: [SITE.instagram],
   address: {

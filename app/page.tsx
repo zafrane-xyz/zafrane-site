@@ -18,6 +18,7 @@ export default function Home() {
     <>
       <section className="px-6 text-center">
         <div className="mx-auto flex min-h-[620px] max-w-4xl flex-col items-center justify-center py-24 md:min-h-[680px]">
+          <img src="/mark.png" alt="" width={74} height={120} className="mx-auto mb-5 h-11 w-auto" />
           <p className="label">Milano</p>
           <h1 className="display mt-7 text-[48px] md:text-[84px]">L’oro rosso di Persia, per la cucina italiana.</h1>
           <p className="body mt-8 max-w-xl">Zafferano persiano Super Negin, dalla famiglia che lo coltiva alla tua cucina.</p>
