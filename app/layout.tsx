@@ -22,7 +22,7 @@ const inter = Inter({
 const DESCRIPTION =
   "Zafferano persiano Super Negin in pistilli e polvere 100% Sargol, dalla filiera familiare in Khorasan. Per la ristorazione di Milano e per la cucina di casa.";
 
-export const viewport: Viewport = { themeColor: "#120e0c" };
+export const viewport: Viewport = { themeColor: "#f4ede2" };
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),

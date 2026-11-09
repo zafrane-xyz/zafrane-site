@@ -1,22 +1,35 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { GRADES, PistilPlate } from "@/components/Pistils";
+import { GradeList } from "@/components/Grades";
 
 export const metadata: Metadata = {
   title: "Zafferano Super Negin e Sargol",
   description:
-    "Zafferano Super Negin in pistilli e polvere 100% Sargol. Le categorie dello zafferano persiano spiegate: Super Negin, Negin, Sargol, Pushal, Dasteh. Uso in cucina e conservazione.",
+    "Zafferano Super Negin in pistilli e polvere 100% Sargol. Le categorie dello zafferano persiano spiegate: Super Negin, Negin, Sargol, Pushal, Dasteh, Konj. Uso in cucina e conservazione.",
   alternates: { canonical: "/zafferano" },
 };
+
+const PRODUCTS = [
+  {
+    eyebrow: "In pistilli",
+    name: "Super Negin",
+    text: "Pistilli lunghi e interi, solo parte rossa, essiccati al sole. È la referenza per chi vuole vedere e controllare il prodotto: si infonde, si tosta, si usa intero.",
+    specs: [["Taglio", "Pistillo intero, solo rosso"], ["Crocina dichiarata", "≥ 260"], ["Uso", "Infusione, risotti, piatti in cui il pistillo si vede"]],
+  },
+  {
+    eyebrow: "In polvere",
+    name: "100% Sargol",
+    text: "Sargol sono le punte rosse del pistillo, la parte con la maggiore forza colorante. La nostra polvere è solo Sargol, macinato: nessuna parte gialla, nessun additivo.",
+    specs: [["Taglio", "Solo punte rosse, macinate"], ["Crocina dichiarata", "≥ 240"], ["Uso", "Cucine ad alto ritmo, impasti, salse"]],
+  },
+];
 
 const SPECS: [string, string][] = [
   ["Specie", "Crocus sativus L."],
   ["Origine", "Khorasan, Iran"],
   ["Raccolta", "A mano, nella fioritura autunnale"],
   ["Essiccazione", "Naturale, al sole"],
-  ["Pistilli", "Super Negin: lunghi, interi, solo parte rossa"],
-  ["Polvere", "100% Sargol: solo le punte rosse, macinate"],
-  ["Crocina dichiarata", "Super Negin ≥ 260 · Sargol ≥ 240. Certificato di analisi del lotto su richiesta"],
+  ["Analisi", "Certificato di analisi del lotto su richiesta"],
 ];
 
 const GUIDE = [
@@ -35,11 +48,11 @@ const SIGNS = [
 export default function Zafferano() {
   return (
     <>
-      <section className="glow px-6 pb-20 pt-28">
+      <section className="warm px-6 pb-20 pt-28">
         <div className="mx-auto max-w-6xl">
           <p className="eyebrow">Il prodotto</p>
-          <h1 className="mt-8 max-w-3xl font-serif text-[44px] font-light leading-[1.1] md:text-[72px]">
-            Due referenze, <em className="text-[var(--gold)]">nessun compromesso.</em>
+          <h1 className="mt-8 max-w-3xl font-serif text-[46px] font-light leading-[1.1] md:text-[74px]">
+            Due referenze, <em className="text-[var(--accent)]">nessun compromesso.</em>
           </h1>
           <p className="mt-8 max-w-xl text-[15px] leading-8 text-[var(--ink-soft)]">
             Selezioniamo solo le due categorie più pure dello zafferano persiano, entrambe da filiera familiare diretta.
@@ -48,20 +61,21 @@ export default function Zafferano() {
       </section>
 
       <section className="px-6 pb-28">
-        <div className="mx-auto grid max-w-6xl gap-8 md:grid-cols-2">
-          {[
-            { g: "super-negin" as const, eyebrow: "In pistilli", name: "Super Negin", text: "Pistilli lunghi e interi, solo parte rossa, essiccati al sole. È la referenza per chi vuole vedere e controllare il prodotto: si infonde, si tosta, si usa intero." },
-            { g: "sargol" as const, eyebrow: "In polvere", name: "100% Sargol", text: "Sargol sono le punte rosse del pistillo, la parte con la maggiore forza colorante. La nostra polvere è solo Sargol, macinato: nessuna parte gialla, nessun additivo." },
-          ].map((p) => (
-            <article key={p.name} className="border border-[var(--line)] bg-[var(--surface)]">
-              <div className="border-b border-[var(--line)] p-6">
-                <PistilPlate grade={p.g} label={`Zafferano ${p.name}`} className="h-auto w-full" />
-              </div>
-              <div className="p-8 md:p-10">
-                <p className="eyebrow">{p.eyebrow}</p>
-                <h2 className="mt-4 font-serif text-[40px] font-light">{p.name}</h2>
-                <p className="mt-4 text-[15px] leading-8 text-[var(--ink-soft)]">{p.text}</p>
-              </div>
+        <div className="mx-auto grid max-w-6xl gap-12 md:grid-cols-2">
+          {PRODUCTS.map((p) => (
+            <article key={p.name} className="frame bg-[var(--background)] p-10 md:p-12">
+              <p className="eyebrow">{p.eyebrow}</p>
+              <h2 className="mt-5 font-serif text-[48px] font-light leading-none">{p.name}</h2>
+              <div className="rule mt-8" />
+              <p className="mt-8 text-[15px] leading-8 text-[var(--ink-soft)]">{p.text}</p>
+              <dl className="mt-8 space-y-3 text-[13px]">
+                {p.specs.map(([k, v]) => (
+                  <div key={k} className="flex justify-between gap-6 border-b border-[var(--line)] pb-3">
+                    <dt className="text-[var(--muted)]">{k}</dt>
+                    <dd className="text-right">{v}</dd>
+                  </div>
+                ))}
+              </dl>
             </article>
           ))}
         </div>
@@ -76,35 +90,20 @@ export default function Zafferano() {
         </dl>
       </section>
 
-      <section id="categorie" className="scroll-mt-24 border-t border-[var(--line)] bg-[var(--surface)] px-6 py-28">
+      <section id="categorie" className="scroll-mt-24 bg-[var(--surface)] px-6 py-28">
         <div className="mx-auto max-w-6xl">
           <p className="eyebrow">Le categorie dello zafferano persiano</p>
-          <h2 className="mt-6 max-w-2xl font-serif text-[36px] font-light leading-tight md:text-[52px]">
+          <h2 className="mt-6 max-w-2xl font-serif text-[38px] font-light leading-tight md:text-[54px]">
             Dal pistillo intero alla sola punta rossa.
           </h2>
           <p className="mt-6 max-w-2xl text-[15px] leading-8 text-[var(--ink-soft)]">
-            Ogni fiore ha tre pistilli rossi uniti a uno stilo giallo-bianco. Il colore e l’aroma stanno nella parte rossa: le
-            categorie dipendono da quanto rosso resta e da come viene tagliato. Lo stilo da solo, senza parte rossa, si chiama Konj
-            ed è quasi privo di colore.
+            Ogni fiore ha tre pistilli rossi uniti a uno stilo giallo-bianco. Colore e aroma stanno nella parte rossa: le categorie
+            dipendono da quanto rosso resta e da come viene tagliato.
           </p>
-
-          <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {GRADES.map((g) => (
-              <article key={g.grade} className={`flex flex-col border bg-[var(--background)] ${g.ours ? "border-[var(--gold)]" : "border-[var(--line)]"}`}>
-                <div className="p-5">
-                  <PistilPlate grade={g.grade} label={`Zafferano ${g.name}`} className="h-auto w-full" />
-                </div>
-                <div className="flex flex-1 flex-col border-t border-[var(--line)] p-7">
-                  <div className="flex items-baseline justify-between gap-4">
-                    <h3 className="font-serif text-[30px] font-light">{g.name}</h3>
-                    {g.ours && <span className="text-[10px] uppercase tracking-[0.22em] text-[var(--gold)]">{g.ours}</span>}
-                  </div>
-                  <p className="mt-3 text-[14px] leading-7 text-[var(--ink-soft)]">{g.text}</p>
-                </div>
-              </article>
-            ))}
+          <div className="mt-14">
+            <GradeList />
           </div>
-          <p className="mt-8 text-[12px] text-[var(--muted)]">Illustrazioni a scopo esplicativo. Classificazione commerciale iraniana.</p>
+          <p className="mt-6 text-[12px] text-[var(--muted)]">Classificazione commerciale iraniana.</p>
         </div>
       </section>
 
@@ -114,8 +113,8 @@ export default function Zafferano() {
           <div className="mt-12 grid gap-14 md:grid-cols-3">
             {GUIDE.map(([t, d]) => (
               <div key={t}>
-                <div className="hairline" />
-                <h2 className="mt-6 font-serif text-[30px] font-light">{t}</h2>
+                <div className="rule" />
+                <h2 className="mt-6 font-serif text-[32px] font-light">{t}</h2>
                 <p className="mt-4 text-[14px] leading-7 text-[var(--ink-soft)]">{d}</p>
               </div>
             ))}

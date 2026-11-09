@@ -10,10 +10,10 @@ export const metadata: Metadata = {
 
 export default function Contatti() {
   const rows: [string, React.ReactNode][] = [
-    ["Email", <a key="e" href={mailto("Contatto dal sito")} className="hover:text-[var(--gold)]">{SITE.email}</a>],
+    ["Email", <a key="e" href={mailto("Contatto dal sito")} className="hover:text-[var(--accent)]">{SITE.email}</a>],
     [
       "Instagram",
-      <a key="i" href={SITE.instagram} target="_blank" rel="noopener noreferrer" className="hover:text-[var(--gold)]">
+      <a key="i" href={SITE.instagram} target="_blank" rel="noopener noreferrer" className="hover:text-[var(--accent)]">
         {SITE.instagramHandle}
       </a>,
     ],
@@ -24,11 +24,11 @@ export default function Contatti() {
   if (LEGAL.pec) rows.push(["PEC", LEGAL.pec]);
 
   return (
-    <section className="glow px-6 pb-28 pt-28">
+    <section className="warm px-6 pb-28 pt-28">
       <div className="mx-auto max-w-6xl">
         <p className="eyebrow">Contatti</p>
         <h1 className="mt-8 font-serif text-[44px] font-light leading-[1.1] md:text-[72px]">
-          Scrivici. <em className="text-[var(--gold)]">Rispondiamo noi.</em>
+          Scrivici. <em className="text-[var(--accent)]">Rispondiamo noi.</em>
         </h1>
         <p className="mt-8 max-w-xl text-[15px] leading-8 text-[var(--ink-soft)]">
           Per ordini, campioni, forniture e informazioni. Ogni messaggio riceve una risposta personale.

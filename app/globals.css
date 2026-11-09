@@ -1,16 +1,17 @@
 @import "tailwindcss";
 
-/* Tema ZAFRANE: nero caldo, crema, rosso zafferano, oro. */
+/* Tema ZAFRANE: crema caldo, inchiostro bruno, rosso zafferano, oro antico. */
 :root {
-  --background: #120e0c;
-  --surface: #1a1411;
-  --surface-2: #221a16;
-  --foreground: #f1e9dc;
-  --ink-soft: #c7b9a8;
-  --muted: #988a7c;
-  --line: rgba(241, 233, 220, 0.12);
-  --accent: #c8232b;
-  --gold: #cfa052;
+  --background: #f4ede2;
+  --surface: #ebe2d3;
+  --foreground: #221a15;
+  --ink-soft: #5b4e44;
+  --muted: #8c7d6e;
+  --line: rgba(34, 26, 21, 0.14);
+  --accent: #9e1b20;
+  --gold: #a47a34;
+  --night: #1f1813;
+  --cream: #f4ede2;
 }
 
 @theme inline {
@@ -30,7 +31,6 @@ body {
 
 html {
   scroll-behavior: smooth;
-  color-scheme: dark;
 }
 
 body {
@@ -52,7 +52,7 @@ body {
 
 .btn {
   display: inline-block;
-  border: 1px solid rgba(241, 233, 220, 0.45);
+  border: 1px solid var(--foreground);
   padding: 15px 30px;
   font-size: 11px;
   text-transform: uppercase;
@@ -66,8 +66,7 @@ body {
 
 .btn:hover {
   background: var(--foreground);
-  border-color: var(--foreground);
-  color: var(--background);
+  color: var(--cream);
 }
 
 .btn-solid {
@@ -77,15 +76,26 @@ body {
 }
 
 .btn-solid:hover {
-  background: #a51a21;
-  border-color: #a51a21;
+  background: #7d1418;
+  border-color: #7d1418;
   color: #fff;
+}
+
+.btn-light {
+  border-color: rgba(244, 237, 226, 0.7);
+  color: var(--cream);
+}
+
+.btn-light:hover {
+  background: var(--cream);
+  border-color: var(--cream);
+  color: var(--foreground);
 }
 
 .field {
   width: 100%;
   border: 0;
-  border-bottom: 1px solid rgba(241, 233, 220, 0.25);
+  border-bottom: 1px solid rgba(34, 26, 21, 0.25);
   background: transparent;
   color: var(--foreground);
   padding: 12px 0;
@@ -102,22 +112,29 @@ body {
   border-bottom-color: var(--gold);
 }
 
-.field option {
-  background: var(--surface);
-  color: var(--foreground);
+/* cornice doppia sottile, dettaglio da etichetta di lusso */
+.frame {
+  border: 1px solid var(--line);
+  outline: 1px solid var(--line);
+  outline-offset: 6px;
 }
 
-.hairline {
+.rule {
   height: 1px;
   width: 48px;
   background: var(--gold);
 }
 
-.glow {
-  background: radial-gradient(ellipse 60% 50% at 50% 42%, rgba(200, 35, 43, 0.2), transparent 70%);
+.warm {
+  background: radial-gradient(ellipse 65% 55% at 50% 40%, rgba(196, 150, 72, 0.16), transparent 70%);
+}
+
+a:focus:not(:focus-visible),
+button:focus:not(:focus-visible) {
+  outline: none;
 }
 
 :focus-visible {
-  outline: 2px solid var(--gold);
-  outline-offset: 3px;
+  outline: 1px solid var(--gold);
+  outline-offset: 4px;
 }

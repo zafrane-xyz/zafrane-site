@@ -24,11 +24,11 @@ const STEPS = [
 export default function Ristorazione() {
   return (
     <>
-      <section className="glow px-6 pb-24 pt-28">
+      <section className="warm px-6 pb-24 pt-28">
         <div className="mx-auto max-w-6xl">
           <p className="eyebrow">Ristorazione</p>
           <h1 className="mt-8 max-w-4xl font-serif text-[44px] font-light leading-[1.1] md:text-[72px]">
-            Per chi cucina <em className="text-[var(--gold)]">ogni giorno.</em>
+            Per chi cucina <em className="text-[var(--accent)]">ogni giorno.</em>
           </h1>
           <p className="mt-8 max-w-xl text-[15px] leading-8 text-[var(--ink-soft)]">
             Per ristoranti, hotel, catering e gastronomie. Lo zafferano si giudica in cucina: prima di impegnarti su una fornitura,
@@ -41,7 +41,7 @@ export default function Ristorazione() {
         <div className="mx-auto grid max-w-6xl gap-x-16 gap-y-14 md:grid-cols-2">
           {POINTS.map(([t, d]) => (
             <div key={t}>
-              <div className="hairline" />
+              <div className="rule" />
               <h2 className="mt-6 font-serif text-[30px] font-light">{t}</h2>
               <p className="mt-3 text-[15px] leading-7 text-[var(--ink-soft)]">{d}</p>
             </div>
