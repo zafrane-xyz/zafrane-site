@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Section from "@/components/Section";
+import PageHero from "@/components/PageHero";
 import { LEGAL, SITE, addressLine } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -8,6 +8,10 @@ export const metadata: Metadata = {
 };
 
 const PARTS: [string, string][] = [
+  [
+    "Titolare del trattamento",
+    `${SITE.name}, impresa individuale di ${LEGAL.titolare}, ${addressLine()}${LEGAL.partitaIva ? `, P.IVA ${LEGAL.partitaIva}` : ""}. Contatto: ${SITE.email}.`,
+  ],
   [
     "Quali dati raccogliamo",
     "Solo quelli che ci invii tu, compilando i moduli di richiesta o scrivendoci: nome, azienda, email, telefono, note. I moduli non salvano nulla sul sito: aprono il tuo programma di posta con il messaggio già compilato, che ci arriva quando lo spedisci.",
@@ -29,25 +33,17 @@ const PARTS: [string, string][] = [
 export default function Privacy() {
   return (
     <>
-      <section className="px-6">
-        <div className="mx-auto grid max-w-6xl gap-6 pb-8 pt-24 md:grid-cols-12 md:gap-8 md:pt-32">
-          <div className="md:col-span-3">
-            <p className="label">Informativa</p>
-          </div>
-          <div className="md:col-span-9">
-            <h1 className="display text-[44px] leading-[1.08] md:text-[64px]">Privacy e cookie</h1>
-            <p className="body mt-10 max-w-lg">
-              Titolare del trattamento: {SITE.name}, impresa individuale di {LEGAL.titolare}, {addressLine()}
-              {LEGAL.partitaIva ? `, P.IVA ${LEGAL.partitaIva}` : ""}. Contatto: {SITE.email}.
-            </p>
-          </div>
+      <PageHero label="Informativa" title="Privacy e cookie" />
+      <section className="px-6 pb-28">
+        <div className="mx-auto max-w-2xl space-y-10">
+          {PARTS.map(([t, d]) => (
+            <div key={t}>
+              <h2 className="display text-[28px]">{t}</h2>
+              <p className="body mt-3">{d}</p>
+            </div>
+          ))}
         </div>
       </section>
-      {PARTS.map(([t, d]) => (
-        <Section key={t} label={t}>
-          <p className="body max-w-xl">{d}</p>
-        </Section>
-      ))}
     </>
   );
 }

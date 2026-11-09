@@ -1,25 +1,29 @@
-// Sezione editoriale: nome nel margine sinistro, contenuto sulle colonne di destra.
+// Sezione centrata in stile Atelier. tone: fondo crema, sabbia o bordeaux.
 
 export default function Section({
-  label,
+  title,
+  intro,
   children,
   id,
-  className = "",
-  rule = true,
+  tone = "paper",
+  italic = false,
 }: {
-  label: string;
-  children: React.ReactNode;
+  title?: string;
+  intro?: string;
+  children?: React.ReactNode;
   id?: string;
-  className?: string;
-  rule?: boolean;
+  tone?: "paper" | "sand" | "wine";
+  italic?: boolean;
 }) {
+  const bg = tone === "sand" ? "bg-[var(--sand)]" : tone === "wine" ? "bg-[var(--wine)] text-[var(--paper)]" : "";
   return (
-    <section id={id} className={`scroll-mt-24 px-6 ${className}`}>
-      <div className={`mx-auto grid max-w-6xl gap-6 py-24 md:grid-cols-12 md:gap-8 md:py-32 ${rule ? "border-t border-[var(--line)]" : ""}`}>
-        <div className="md:col-span-3">
-          <h2 className="label md:sticky md:top-28">{label}</h2>
-        </div>
-        <div className="md:col-span-9">{children}</div>
+    <section id={id} className={`scroll-mt-32 px-6 py-24 text-center md:py-28 ${bg}`}>
+      <div className="mx-auto max-w-5xl">
+        {title && (
+          <h2 className={`display mx-auto max-w-3xl text-[36px] md:text-[48px] ${italic ? "font-medium italic" : ""}`}>{title}</h2>
+        )}
+        {intro && <p className={`mx-auto mt-6 max-w-xl text-[17px] leading-[1.7] ${tone === "wine" ? "text-[#e6d9c6]" : "text-[var(--ink-soft)]"}`}>{intro}</p>}
+        {children && <div className={title || intro ? "mt-14" : ""}>{children}</div>}
       </div>
     </section>
   );

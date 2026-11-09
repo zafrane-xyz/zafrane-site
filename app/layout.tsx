@@ -1,28 +1,29 @@
 import "./globals.css";
 import type { Metadata, Viewport } from "next";
-import { Bodoni_Moda, Jost } from "next/font/google";
+import { Cormorant_Garamond, Nunito_Sans } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Maintenance from "@/components/Maintenance";
 import { SITE, LEGAL, MAINTENANCE } from "@/lib/site";
 
-// Bodoni (Parma) e Jost (geometrico, alla Futura): la coppia classica della grafica milanese.
-const bodoni = Bodoni_Moda({
+// Cormorant Garamond (titoli, in armonia con le capitali del logo) e Nunito Sans (testo, molto leggibile).
+const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
+  weight: ["500", "600"],
   style: ["normal", "italic"],
-  axes: ["opsz"],
-  variable: "--font-bodoni",
+  variable: "--font-cormorant",
 });
 
-const jost = Jost({
+const nunito = Nunito_Sans({
   subsets: ["latin"],
-  variable: "--font-jost",
+  weight: ["400", "600"],
+  variable: "--font-nunito",
 });
 
 const DESCRIPTION =
-  "Zafferano persiano Super Negin in pistilli e polvere 100% Sargol, dalla filiera familiare in Khorasan. Per la ristorazione di Milano e per la cucina di casa.";
+  "Zafferano persiano Super Negin in pistilli e polvere 100% Sargol, da una filiera familiare. Per la ristorazione e per la cucina di casa.";
 
-export const viewport: Viewport = { themeColor: "#f6f1e7" };
+export const viewport: Viewport = { themeColor: "#f3ece0" };
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
@@ -63,7 +64,7 @@ const jsonLd = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="it" className={`${bodoni.variable} ${jost.variable}`}>
+    <html lang="it" className={`${cormorant.variable} ${nunito.variable}`}>
       <body>
         {MAINTENANCE ? (
           <Maintenance />

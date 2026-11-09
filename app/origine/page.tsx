@@ -1,72 +1,58 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import PageHero from "@/components/PageHero";
 import Section from "@/components/Section";
 
 export const metadata: Metadata = {
   title: "Origine",
   description:
-    "Lo zafferano ZAFRANE nasce in Khorasan, in una filiera familiare, e arriva a Milano: raccolta a mano, essiccazione al sole, acquisto diretto.",
+    "Lo zafferano ZAFRANE nasce in Khorasan, in una filiera familiare: raccolta a mano, essiccazione al sole, acquisto diretto dalla famiglia produttrice.",
   alternates: { canonical: "/origine" },
 };
 
 const STEPS = [
   ["Raccolta", "I fiori sbocciano per poche settimane in autunno. Si raccolgono a mano, all’alba, prima che il sole li apra."],
-  ["Separazione", "Da ogni fiore si estraggono a mano i tre pistilli rossi. Per un chilo di zafferano servono oltre 150.000 fiori."],
+  ["Separazione", "Da ogni fiore si estraggono a mano i tre pistilli rossi. Per un chilo servono oltre 150.000 fiori."],
   ["Essiccazione", "I pistilli si essiccano in modo naturale, al sole: è il passaggio che fissa colore e aroma."],
-  ["Selezione", "Il raccolto viene diviso per categoria. Scegliamo il Super Negin e il Sargol, che arrivano a Milano."],
+  ["Selezione", "Il raccolto viene diviso per categoria. Scegliamo il Super Negin e il Sargol."],
 ];
 
 export default function Origine() {
   return (
     <>
-      <section className="px-6">
-        <div className="mx-auto grid max-w-6xl gap-6 pb-8 pt-24 md:grid-cols-12 md:gap-8 md:pt-32">
-          <div className="md:col-span-3">
-            <p className="label">Origine</p>
-          </div>
-          <div className="md:col-span-9">
-            <h1 className="display max-w-[14ch] text-[44px] leading-[1.08] md:text-[72px]">Da Mashhad a Milano.</h1>
-            <p className="body mt-10 max-w-lg">
-              Mashhad, nel cuore della Khorasan, è la storica terra dello zafferano iraniano. Milano è la città del risotto allo
-              zafferano. ZAFRANE nasce tra queste due città.
-            </p>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        label="Origine"
+        title="Dalla Persia all’Italia."
+        intro="Mashhad, nel cuore della Khorasan, è la storica terra dello zafferano persiano. Da lì arriva il nostro, per la cucina italiana."
+      />
 
-      <Section label="La filiera">
-        <p className="display max-w-[26ch] text-[30px] leading-[1.2] md:text-[40px]">
-          Lo scegliamo direttamente dalla famiglia che lo coltiva: sappiamo chi lo raccoglie, come lo essicca, in quale stagione.
-        </p>
-      </Section>
+      <Section tone="sand" italic title="Lo scegliamo direttamente dalla famiglia che lo coltiva: sappiamo chi lo raccoglie, come lo essicca, in quale stagione." />
 
-      <Section label="Dal fiore alla spezia">
-        <ol className="grid gap-12 md:grid-cols-2 md:gap-x-10 md:gap-y-14">
+      <Section title="Dal fiore alla spezia">
+        <ol className="grid gap-12 md:grid-cols-4 md:gap-10">
           {STEPS.map(([t, d], i) => (
-            <li key={t} className="grid grid-cols-[2.5rem_1fr] gap-2">
-              <span className="display text-[22px] leading-[1.3] text-[var(--crimson)]">{i + 1}.</span>
-              <div>
-                <h3 className="display text-[26px] leading-[1.2]">{t}</h3>
-                <p className="body mt-3 text-[15px]">{d}</p>
-              </div>
+            <li key={t}>
+              <p className="display text-[28px] text-[var(--crimson)]">{i + 1}</p>
+              <h3 className="display mt-2 text-[30px]">{t}</h3>
+              <p className="body mt-3 text-[16px]">{d}</p>
             </li>
           ))}
         </ol>
       </Section>
 
-      <Section label="Chi siamo">
-        <div className="max-w-xl">
+      <Section tone="sand" title="Chi siamo">
+        <div className="mx-auto max-w-2xl">
           <p className="body">
-            ZAFRANE è un progetto di Navid Khoshbaf, nato a Mashhad in una famiglia di produttori di zafferano e da anni in Italia,
-            dove ha studiato design. Conosce la filiera dall’interno e cura il prodotto con lo stesso rigore con cui lo sceglie.
+            ZAFRANE è un progetto di Navid Khoshbaf, nato a Mashhad in una famiglia di produttori di zafferano e da anni in Italia, dove
+            ha studiato design. Conosce la filiera dall’interno e cura il prodotto con lo stesso rigore con cui lo sceglie.
           </p>
           <p className="body mt-6">
-            Oggi lavoriamo con ristoranti di Milano, con un’idea semplice: meno quantità, più intensità, e una fornitura di cui un
-            cuoco si possa fidare.
+            Lavoriamo con ristoranti e cuochi, con un’idea semplice: meno quantità, più intensità, e una fornitura di cui ci si possa
+            fidare.
           </p>
-          <div className="mt-12 flex flex-wrap items-center gap-x-10 gap-y-6">
+          <div className="mt-12 flex flex-wrap justify-center gap-4">
             <Link href="/zafferano" className="btn">Il prodotto</Link>
-            <Link href="/contatti" className="link">Contatti</Link>
+            <Link href="/contatti" className="btn btn-outline">Contatti</Link>
           </div>
         </div>
       </Section>
