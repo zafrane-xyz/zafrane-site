@@ -1,40 +1,42 @@
 import Link from "next/link";
-import { NAV, SITE, legalLines } from "@/lib/site";
+import { LEGAL, NAV, SITE, addressLine } from "@/lib/site";
 
 export default function Footer() {
   return (
-    <footer className="bg-[var(--night)] px-6 pb-12 pt-20 text-[var(--cream)]">
-      <div className="mx-auto grid max-w-6xl gap-14 md:grid-cols-[1.4fr_1fr_1fr]">
-        <div>
-          <img src="/logo-header.png" alt="ZAFRANE" width={331} height={80} className="h-9 w-auto" />
-          <p className="mt-6 max-w-xs font-serif text-[21px] italic leading-snug text-[#d8ccba]">
-            Zafferano persiano dalla Khorasan, scelto per le cucine di Milano.
-          </p>
+    <footer className="px-6">
+      <div className="mx-auto grid max-w-6xl gap-12 border-t border-[var(--line)] py-20 md:grid-cols-12 md:gap-8">
+        <div className="md:col-span-3">
+          <img src="/logo-header-dark.png" alt="ZAFRANE" width={331} height={80} className="h-7 w-auto" />
+          <p className="label mt-5">Milano</p>
         </div>
 
-        <div>
-          <p className="eyebrow text-[#c9a25e]!">Navigazione</p>
-          <ul className="mt-6 space-y-3 text-[13px] text-[#cfc2b0]">
+        <nav className="md:col-span-3" aria-label="Pagine">
+          <ul className="space-y-2 text-[14px]">
             {NAV.map((n) => (
               <li key={n.href}>
-                <Link href={n.href} className="hover:text-white">{n.label}</Link>
+                <Link href={n.href} className="hover:text-[var(--crimson)]">{n.label}</Link>
               </li>
             ))}
           </ul>
-        </div>
+        </nav>
 
-        <div>
-          <p className="eyebrow text-[#c9a25e]!">Contatti</p>
-          <ul className="mt-6 space-y-3 text-[13px] text-[#cfc2b0]">
-            <li><a href={`mailto:${SITE.email}`} className="hover:text-white">{SITE.email}</a></li>
-            <li><a href={SITE.instagram} target="_blank" rel="noopener noreferrer" className="hover:text-white">Instagram {SITE.instagramHandle}</a></li>
-          </ul>
-        </div>
-      </div>
+        <ul className="space-y-2 text-[14px] md:col-span-3">
+          <li><a href={`mailto:${SITE.email}`} className="hover:text-[var(--crimson)]">{SITE.email}</a></li>
+          <li><a href={SITE.instagram} target="_blank" rel="noopener noreferrer" className="hover:text-[var(--crimson)]">Instagram</a></li>
+          <li><Link href="/privacy" className="hover:text-[var(--crimson)]">Privacy e cookie</Link></li>
+        </ul>
 
-      <div className="mx-auto mt-16 flex max-w-6xl flex-col gap-4 border-t border-white/10 pt-6 text-[11px] leading-6 tracking-wide text-[#a3968a] md:flex-row md:items-start md:justify-between">
-        <p>{legalLines().join(" · ")}</p>
-        <Link href="/privacy" className="shrink-0 hover:text-white">Privacy e cookie</Link>
+        <address className="label not-italic md:col-span-3">
+          {SITE.name}
+          <br />
+          {addressLine()}
+          {LEGAL.partitaIva && (
+            <>
+              <br />
+              P.IVA {LEGAL.partitaIva}
+            </>
+          )}
+        </address>
       </div>
     </footer>
   );

@@ -1,32 +1,32 @@
 @import "tailwindcss";
 
-/* Tema ZAFRANE: crema caldo, inchiostro bruno, rosso zafferano, oro antico. */
+/* ZAFRANE — carta avorio, inchiostro bruno, cremisi del logo. Bodoni Moda + Jost. */
 :root {
-  --background: #f4ede2;
-  --surface: #ebe2d3;
-  --foreground: #221a15;
-  --ink-soft: #5b4e44;
-  --muted: #8c7d6e;
-  --line: rgba(34, 26, 21, 0.14);
-  --accent: #9e1b20;
-  --gold: #a47a34;
-  --night: #1f1813;
-  --cream: #f4ede2;
+  --paper: #f6f1e7;
+  --paper-2: #efe7da;
+  --ink: #2b1e1a;
+  --ink-soft: #6a5b52;
+  --line: rgba(43, 30, 26, 0.16);
+  --crimson: #8e1b1e;
+
+  /* alias usati dai componenti */
+  --background: var(--paper);
+  --foreground: var(--ink);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-serif: var(--font-cormorant);
-  --font-sans: var(--font-inter);
+  --color-background: var(--paper);
+  --color-foreground: var(--ink);
+  --font-display: var(--font-bodoni);
+  --font-sans: var(--font-jost);
 }
 
 html,
 body {
   margin: 0;
   padding: 0;
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--paper);
+  color: var(--ink);
 }
 
 html {
@@ -34,99 +34,101 @@ html {
 }
 
 body {
-  font-family: var(--font-inter), Arial, Helvetica, sans-serif;
+  font-family: var(--font-jost), "Helvetica Neue", Arial, sans-serif;
+  font-weight: 350;
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 ::selection {
-  background: var(--accent);
-  color: #fff;
+  background: var(--crimson);
+  color: var(--paper);
 }
 
-.eyebrow {
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: 0.4em;
-  color: var(--gold);
+.display {
+  font-family: var(--font-bodoni), Didot, "Bodoni 72", Georgia, serif;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+/* nome della sezione nel margine: minuscolo, discreto */
+.label {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  letter-spacing: 0.01em;
+}
+
+.body {
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--ink-soft);
 }
 
 .btn {
   display: inline-block;
-  border: 1px solid var(--foreground);
-  padding: 15px 30px;
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.26em;
-  transition: background 0.25s, color 0.25s, border-color 0.25s;
+  padding: 15px 28px;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  background: var(--ink);
+  border: 1px solid var(--ink);
+  color: var(--paper);
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
   cursor: pointer;
-  background: transparent;
-  color: var(--foreground);
   text-align: center;
 }
 
 .btn:hover {
-  background: var(--foreground);
-  color: var(--cream);
+  background: var(--crimson);
+  border-color: var(--crimson);
 }
 
-.btn-solid {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: #fff;
+.btn-on-dark {
+  background: var(--paper);
+  border-color: var(--paper);
+  color: var(--ink);
 }
 
-.btn-solid:hover {
-  background: #7d1418;
-  border-color: #7d1418;
-  color: #fff;
+.btn-on-dark:hover {
+  background: transparent;
+  color: var(--paper);
 }
 
-.btn-light {
-  border-color: rgba(244, 237, 226, 0.7);
-  color: var(--cream);
+.link {
+  font-size: 14px;
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--line);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 6px;
+  transition: color 0.2s, text-decoration-color 0.2s;
 }
 
-.btn-light:hover {
-  background: var(--cream);
-  border-color: var(--cream);
-  color: var(--foreground);
+.link:hover {
+  color: var(--crimson);
+  text-decoration-color: var(--crimson);
 }
 
 .field {
   width: 100%;
   border: 0;
-  border-bottom: 1px solid rgba(34, 26, 21, 0.25);
+  border-bottom: 1px solid rgba(43, 30, 26, 0.28);
   background: transparent;
-  color: var(--foreground);
+  color: var(--ink);
   padding: 12px 0;
-  font-size: 14px;
+  font-size: 15px;
+  font-weight: 350;
   outline: none;
   border-radius: 0;
 }
 
 .field::placeholder {
-  color: var(--muted);
+  color: #9a8b80;
 }
 
 .field:focus {
-  border-bottom-color: var(--gold);
-}
-
-/* cornice doppia sottile, dettaglio da etichetta di lusso */
-.frame {
-  border: 1px solid var(--line);
-  outline: 1px solid var(--line);
-  outline-offset: 6px;
-}
-
-.rule {
-  height: 1px;
-  width: 48px;
-  background: var(--gold);
-}
-
-.warm {
-  background: radial-gradient(ellipse 65% 55% at 50% 40%, rgba(196, 150, 72, 0.16), transparent 70%);
+  border-bottom-color: var(--crimson);
 }
 
 a:focus:not(:focus-visible),
@@ -135,6 +137,6 @@ button:focus:not(:focus-visible) {
 }
 
 :focus-visible {
-  outline: 1px solid var(--gold);
+  outline: 1px solid var(--crimson);
   outline-offset: 4px;
 }

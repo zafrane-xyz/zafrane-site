@@ -10,13 +10,14 @@ export default function Header() {
   const path = usePathname();
 
   return (
-    <header className="sticky top-0 z-40 border-b border-[var(--line)] bg-[var(--background)]/90 backdrop-blur-md">
-      <div className="mx-auto flex h-[76px] max-w-6xl items-center justify-between px-6">
+    <header className="sticky top-0 z-40 bg-[var(--paper)]/92 backdrop-blur-md">
+      <div className="px-6">
+      <div className="mx-auto flex h-20 max-w-6xl items-center justify-between border-b border-[var(--line)]">
         <Link href="/" aria-label="ZAFRANE, home" onClick={() => setOpen(false)} className="shrink-0">
-          <img src="/logo-header-dark.png" alt="ZAFRANE" width={331} height={80} className="h-9 w-auto" />
+          <img src="/logo-header-dark.png" alt="ZAFRANE" width={331} height={80} className="h-8 w-auto" />
         </Link>
 
-        <nav className="hidden items-center gap-10 md:flex" aria-label="Principale">
+        <nav className="hidden items-center gap-9 md:flex" aria-label="Principale">
           {NAV.map((n) => {
             const active = path === n.href;
             return (
@@ -24,9 +25,7 @@ export default function Header() {
                 key={n.href}
                 href={n.href}
                 aria-current={active ? "page" : undefined}
-                className={`border-b pb-1 text-[11px] uppercase tracking-[0.26em] transition hover:text-[var(--accent)] ${
-                  active ? "border-[var(--accent)] text-[var(--accent)]" : "border-transparent text-[var(--ink-soft)]"
-                }`}
+                className={`text-[14px] transition-colors hover:text-[var(--crimson)] ${active ? "text-[var(--crimson)]" : "text-[var(--ink)]"}`}
               >
                 {n.label}
               </Link>
@@ -37,22 +36,25 @@ export default function Header() {
         <button
           aria-label="Apri o chiudi il menu"
           aria-expanded={open}
-          className="text-[11px] uppercase tracking-[0.26em] text-[var(--ink-soft)] md:hidden"
+          className="text-[14px] md:hidden"
           onClick={() => setOpen(!open)}
         >
           {open ? "Chiudi" : "Menu"}
         </button>
       </div>
+      </div>
 
       {open && (
-        <nav className="border-t border-[var(--line)] bg-[var(--background)] px-6 py-8 md:hidden" aria-label="Mobile">
-          <div className="flex flex-col gap-6">
+        <nav className="border-t border-[var(--line)] bg-[var(--paper)] px-6 py-10 md:hidden" aria-label="Mobile">
+          <ul className="space-y-5">
             {NAV.map((n) => (
-              <Link key={n.href} href={n.href} onClick={() => setOpen(false)} className="font-serif text-[28px]">
-                {n.label}
-              </Link>
+              <li key={n.href}>
+                <Link href={n.href} onClick={() => setOpen(false)} className="display text-[30px]">
+                  {n.label}
+                </Link>
+              </li>
             ))}
-          </div>
+          </ul>
         </nav>
       )}
     </header>

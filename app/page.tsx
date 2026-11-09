@@ -1,123 +1,87 @@
 import Link from "next/link";
-import { GradeList } from "@/components/Grades";
+import Section from "@/components/Section";
 import { mailto } from "@/lib/site";
 
-const FACTS = [
-  ["3", "pistilli per fiore", "Ogni fiore di Crocus sativus ne dà solo tre, separati a mano."],
-  ["150.000", "fiori per un chilo", "Per questo lo zafferano è la spezia più preziosa al mondo."],
-  ["1", "raccolto l’anno", "I fiori sbocciano in autunno, per poche settimane."],
+const VALUES = [
+  ["Origine", "Acquistiamo direttamente dalla famiglia produttrice, in Khorasan. Di ogni lotto sappiamo chi lo ha raccolto e come è stato essiccato."],
+  ["Purezza", "Solo parte rossa. Super Negin in pistilli interi, Sargol in polvere: nessuno stilo giallo, nessun additivo."],
+  ["Misura", "Un pistillo intenso rende di più: indicativamente 0,05–0,10 g a porzione di risotto. Meno quantità, più intensità."],
 ];
 
-const PILLARS = [
-  ["Alta resa", "Pistilli interi e intensi: indicativamente 0,05–0,10 g a porzione di risotto. Più porzioni per grammo, food cost prevedibile."],
-  ["Filiera familiare", "Acquistiamo direttamente dalla famiglia produttrice in Khorasan. Sappiamo chi raccoglie, quando e come."],
-  ["Solo parte rossa", "Super Negin in pistilli, essiccato al sole. In polvere, solo Sargol: le punte rosse, nient’altro."],
+const PRODUCTS = [
+  ["Super Negin", "In pistilli", "Pistilli lunghi e interi, essiccati al sole. Per chi vuole vedere e controllare lo zafferano che usa."],
+  ["Sargol", "In polvere", "Solo le punte rosse del pistillo, macinate. Si scioglie subito, senza infusione."],
 ];
 
 export default function Home() {
   return (
     <>
-      {/* HERO */}
-      <section className="warm flex min-h-[calc(100vh-76px)] flex-col items-center justify-center px-6 py-24 text-center">
-        <img src="/logo-dark.png" alt="ZAFRANE" width={880} height={386} className="h-auto w-[440px] max-w-[78vw]" />
-        <p className="eyebrow mt-12">Khorasan · Milano</p>
-        <h1 className="mt-8 max-w-3xl font-serif text-[38px] font-light leading-[1.15] md:text-[58px]">
-          L’oro rosso della Khorasan, <em className="text-[var(--accent)]">scelto per le cucine di Milano.</em>
-        </h1>
-        <div className="mt-12 flex flex-wrap justify-center gap-4">
-          <Link href="/zafferano" className="btn btn-solid">Scopri lo zafferano</Link>
-          <Link href="/ristorazione" className="btn">Per la ristorazione</Link>
+      <section className="px-6">
+        <div className="mx-auto flex min-h-[calc(100svh-81px)] max-w-6xl flex-col items-center justify-center py-24 text-center">
+          <img src="/logo-dark.png" alt="ZAFRANE" width={880} height={386} className="h-auto w-[300px] max-w-[70vw] md:w-[340px]" />
+          <p className="label mt-6">Milano</p>
+          <h1 className="display mt-20 max-w-[16ch] text-[40px] leading-[1.12] md:text-[64px]">
+            L’oro rosso della Khorasan, scelto per le cucine di Milano.
+          </h1>
+          <div className="mt-14 flex flex-wrap items-center justify-center gap-x-10 gap-y-6">
+            <Link href="/zafferano" className="btn">Scopri lo zafferano</Link>
+            <Link href="/ristorazione" className="link">Per la ristorazione</Link>
+          </div>
         </div>
       </section>
 
-      {/* MANIFESTO */}
-      <section className="border-t border-[var(--line)] px-6 py-32">
-        <div className="mx-auto max-w-4xl text-center">
-          <img src="/mark.png" alt="" width={59} height={96} className="mx-auto h-10 w-auto" />
-          <p className="mt-10 font-serif text-[32px] font-light leading-[1.35] md:text-[46px]">
-            Pistilli interi, colore profondo, profumo pulito.{" "}
-            <em className="text-[var(--accent)]">Meno quantità, più intensità.</em>
-          </p>
-          <p className="mx-auto mt-10 max-w-xl text-[15px] leading-8 text-[var(--ink-soft)]">
-            Zafferano Super Negin acquistato direttamente dalla famiglia produttrice, essiccato al sole e consegnato a Milano.
-          </p>
-        </div>
-      </section>
-
-      {/* NUMERI */}
-      <section className="bg-[var(--surface)] px-6 py-24">
-        <div className="mx-auto grid max-w-6xl gap-14 md:grid-cols-3">
-          {FACTS.map(([n, k, d]) => (
-            <div key={k} className="text-center md:text-left">
-              <p className="font-serif text-[68px] font-light leading-none text-[var(--accent)]">{n}</p>
-              <p className="eyebrow mt-5">{k}</p>
-              <p className="mx-auto mt-4 max-w-xs text-[14px] leading-7 text-[var(--ink-soft)] md:mx-0">{d}</p>
+      <Section label="Ciò in cui crediamo">
+        <p className="display max-w-[24ch] text-[32px] leading-[1.2] md:text-[44px]">
+          Lo zafferano si giudica in cucina. Per questo ne scegliamo poco, e lo scegliamo bene.
+        </p>
+        <dl className="mt-20 grid gap-12 md:grid-cols-3 md:gap-10">
+          {VALUES.map(([t, d]) => (
+            <div key={t}>
+              <dt className="display text-[26px]">{t}</dt>
+              <dd className="body mt-3 text-[15px]">{d}</dd>
             </div>
           ))}
-        </div>
-      </section>
+        </dl>
+      </Section>
 
-      {/* PILASTRI */}
-      <section className="px-6 py-28">
-        <div className="mx-auto max-w-6xl">
-          <p className="eyebrow">Perché ZAFRANE</p>
-          <div className="mt-14 grid gap-14 md:grid-cols-3">
-            {PILLARS.map(([t, d], i) => (
-              <div key={t}>
-                <div className="rule" />
-                <p className="mt-6 font-serif text-[18px] text-[var(--gold)]">0{i + 1}</p>
-                <h2 className="mt-2 font-serif text-[32px] font-light">{t}</h2>
-                <p className="mt-4 text-[14px] leading-7 text-[var(--ink-soft)]">{d}</p>
-              </div>
-            ))}
-          </div>
+      <Section label="Lo zafferano">
+        <div className="grid gap-16 md:grid-cols-2 md:gap-10">
+          {PRODUCTS.map(([name, kind, text]) => (
+            <article key={name}>
+              <p className="label">{kind}</p>
+              <h3 className="display mt-2 text-[44px] leading-none md:text-[52px]">{name}</h3>
+              <p className="body mt-6 max-w-sm">{text}</p>
+            </article>
+          ))}
         </div>
-      </section>
+        <p className="mt-16">
+          <Link href="/zafferano" className="link">Il prodotto e le categorie dello zafferano</Link>
+        </p>
+      </Section>
 
-      {/* CATEGORIE */}
-      <section className="border-t border-[var(--line)] px-6 py-28">
-        <div className="mx-auto max-w-6xl">
-          <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
-            <div>
-              <p className="eyebrow">Le categorie</p>
-              <h2 className="mt-6 max-w-xl font-serif text-[38px] font-light leading-tight md:text-[52px]">
-                Non tutto lo zafferano è uguale.
-              </h2>
-            </div>
-            <Link href="/zafferano#categorie" className="btn shrink-0">Le categorie spiegate</Link>
+      <section className="bg-[var(--ink)] px-6 text-[var(--paper)]">
+        <div className="mx-auto grid max-w-6xl gap-6 py-24 md:grid-cols-12 md:gap-8 md:py-32">
+          <div className="md:col-span-3">
+            <h2 className="label text-[#c4b6a8]!">Ristorazione</h2>
           </div>
-          <div className="mt-14">
-            <GradeList compact />
+          <div className="md:col-span-9">
+            <p className="display max-w-[26ch] text-[32px] leading-[1.2] md:text-[44px]">
+              Per ristoranti, hotel e catering di Milano: campione di prova, forniture programmate, listino riservato.
+            </p>
+            <Link href="/ristorazione#richiesta" className="btn btn-on-dark mt-12">Richiedi un campione</Link>
           </div>
         </div>
       </section>
 
-      {/* RISTORAZIONE */}
-      <section className="bg-[#5a1216] px-6 py-28 text-[var(--cream)]">
-        <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-10 md:flex-row md:items-center">
-          <div className="max-w-2xl">
-            <p className="eyebrow text-[#e3c07f]!">Per ristoranti, hotel e catering</p>
-            <h2 className="mt-6 font-serif text-[36px] font-light leading-tight md:text-[50px]">
-              Campione di prova, forniture programmate, listino riservato.
-            </h2>
-          </div>
-          <Link href="/ristorazione#richiesta" className="btn btn-light shrink-0">Richiedi un campione</Link>
+      <Section label="Shop online" rule={false}>
+        <p className="body max-w-md">
+          Lo shop online è in allestimento. Nel frattempo gli ordini si fanno su richiesta, per email.
+        </p>
+        <div className="mt-8 flex flex-wrap gap-x-10 gap-y-4">
+          <a href={mailto("Ordine ZAFRANE")} className="link">Scrivici per ordinare</a>
+          <Link href="/shop" className="link">Informazioni sullo shop</Link>
         </div>
-      </section>
-
-      {/* SHOP */}
-      <section className="px-6 py-24">
-        <div className="frame mx-auto flex max-w-6xl flex-col items-start justify-between gap-8 p-10 md:flex-row md:items-center md:p-14">
-          <div>
-            <p className="eyebrow">Shop online</p>
-            <p className="mt-4 font-serif text-[32px] font-light">In allestimento. Nel frattempo, ordini su richiesta.</p>
-          </div>
-          <div className="flex flex-wrap gap-4">
-            <Link href="/shop" className="btn">Info sullo shop</Link>
-            <a href={mailto("Ordine ZAFRANE")} className="btn btn-solid">Scrivici per ordinare</a>
-          </div>
-        </div>
-      </section>
+      </Section>
     </>
   );
 }

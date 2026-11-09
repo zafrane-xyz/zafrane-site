@@ -56,9 +56,9 @@ export default function SampleForm() {
       <input className="field" placeholder="Consumo stimato al mese (facoltativo)" value={f.volume} onChange={set("volume")} />
       <textarea className="field" rows={3} placeholder="Note (facoltative)" value={f.note} onChange={set("note")} />
       <div>
-        <button type="submit" className="btn btn-solid">Richiedi campione e quotazione</button>
+        <button type="submit" className="btn">Richiedi campione e quotazione</button>
       </div>
-      <p className="text-[12px] leading-6 text-[var(--muted)]">
+      <p className="label">
         Si aprirà il tuo programma di posta con la richiesta già compilata: premi invio per spedirla.
       </p>
     </form>
