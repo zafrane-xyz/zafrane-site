@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Section from "@/components/Section";
+import LogoIntro from "@/components/LogoIntro";
 import { mailto } from "@/lib/site";
 
 const VALUES = [
@@ -16,6 +17,7 @@ const PRODUCTS = [
 export default function Home() {
   return (
     <>
+      <LogoIntro />
       <section className="px-6 text-center">
         <div className="mx-auto flex min-h-[620px] max-w-4xl flex-col items-center justify-center py-24 md:min-h-[680px]">
           <img src="/mark.png" alt="" width={74} height={120} className="mx-auto mb-5 h-11 w-auto" />
