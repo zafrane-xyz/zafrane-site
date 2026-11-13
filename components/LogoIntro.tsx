@@ -26,7 +26,8 @@ export default function LogoIntro() {
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    try { if (sessionStorage.getItem(KEY)) return; sessionStorage.setItem(KEY, "1"); } catch {}
+    const force = new URLSearchParams(window.location.search).has("intro");
+    try { if (!force && sessionStorage.getItem(KEY)) return; sessionStorage.setItem(KEY, "1"); } catch {}
     setShow(true);
   }, []);
 
